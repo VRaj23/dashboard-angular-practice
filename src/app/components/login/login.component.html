@@ -1,0 +1,49 @@
+<div class="login-form">
+  <h5>
+    Please Login to proceed
+  </h5>
+
+  <form (ngSubmit)="login(formData)" #formData = ngForm>
+
+    <div class="form-group">
+      <label>Email</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        ngModel name="username" 
+        (change)="resetLoginFailed()" 
+        autofocus><br>
+    </div>
+
+    <div class="form-group">
+      <label>Password</label> 
+      <input 
+        type="password" 
+        class="form-control" 
+        ngModel name="password" 
+        (change)="resetLoginFailed()" 
+        required>
+    </div>
+
+    <div *ngIf="loginFailed">
+      <p style="color: red">Email or Password is Wrong</p>
+    </div>
+
+    <div *ngIf="notAdmin">
+      <p style="color: red">You are not an Admin User</p>
+    </div>
+
+    <div *ngIf="loggingIn">
+      <p>Logging In. Please Wait...</p>
+    </div>
+
+    <div class="form-group">
+      <button 
+        class="btn btn-large btn-success"
+        type="submit"
+        [disabled]="!formData.valid">
+      Login</button>
+    </div>
+
+  </form>
+</div>

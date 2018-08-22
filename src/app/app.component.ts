@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  constructor(private _router: Router){
+    var token = sessionStorage.getItem('token');
+    if(token != null)
+      this._router.navigate(['/dashboard']);
+    else
+      this._router.navigate(['/']);
+  }
 }
